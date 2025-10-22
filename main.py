@@ -1,4 +1,3 @@
-# main.py
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from gui import Ui_MainWindow
@@ -15,12 +14,14 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        logic.read_config(self)
+
         # Connect directory buttons to handler
-        self.ui.TF2_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, self.ui, "tf2"))
-        self.ui.HLDMS_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, self.ui, "hldms"))
-        self.ui.HL2DM_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, self.ui, "hl2dm"))
-        self.ui.DOD_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, self.ui, "dod"))
-        self.ui.L4D2_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, self.ui, "l4d2"))
+        self.ui.TF2_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "TF2"))
+        self.ui.HLDMS_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "HLDM:S"))
+        self.ui.HL2DM_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "HL2:DM"))
+        self.ui.DOD_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "DoD:S"))
+        self.ui.L4D2_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "L4D2"))
 
 
 if __name__ == "__main__":

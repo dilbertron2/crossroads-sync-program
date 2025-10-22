@@ -40,12 +40,25 @@ class Ui_MainWindow(object):
         self.gridLayout.setVerticalSpacing(10)
         self.gridLayout.setObjectName("gridLayout")
         self.TF2_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.TF2_path_label.sizePolicy().hasHeightForWidth())
+        self.TF2_path_label.setSizePolicy(sizePolicy)
+        self.TF2_path_label.setMaximumSize(QtCore.QSize(500, 16777215))
         self.TF2_path_label.setAutoFillBackground(False)
         self.TF2_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
+        self.TF2_path_label.setScaledContents(False)
+        self.TF2_path_label.setWordWrap(False)
         self.TF2_path_label.setObjectName("TF2_path_label")
         self.gridLayout.addWidget(self.TF2_path_label, 0, 2, 1, 1, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.label_3 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
+        self.label_3.setStyleSheet("font: 22pt \"Roboto\";\n"
+"color: rgb(0, 0, 0);")
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
         self.HLDMS_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.HLDMS_path_label.setAutoFillBackground(False)
         self.HLDMS_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
@@ -53,38 +66,15 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);")
         self.HLDMS_path_label.setObjectName("HLDMS_path_label")
         self.gridLayout.addWidget(self.HLDMS_path_label, 1, 2, 1, 1)
-        self.label_3 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
-        self.label_3.setStyleSheet("font: 22pt \"Roboto\";\n"
-"color: rgb(0, 0, 0);")
-        self.label_3.setObjectName("label_3")
-        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.label_2.setStyleSheet("font: 22pt \"Roboto\";\n"
 "color: rgb(0, 0, 0);")
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-        self.HL2DM_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
-        self.HL2DM_set_dir_button.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(231, 231, 231);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background-color: rgb(202, 202, 202);\n"
-"border-style: inset;\n"
-"}")
-        self.HL2DM_set_dir_button.setObjectName("HL2DM_set_dir_button")
-        self.gridLayout.addWidget(self.HL2DM_set_dir_button, 2, 4, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem1, 1, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem1, 0, 1, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem2, 0, 1, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem3, 2, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem2, 2, 1, 1, 1)
         self.TF2_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.TF2_set_dir_button.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -101,6 +91,24 @@ class Ui_MainWindow(object):
 "}")
         self.TF2_set_dir_button.setObjectName("TF2_set_dir_button")
         self.gridLayout.addWidget(self.TF2_set_dir_button, 0, 4, 1, 1)
+        self.HL2DM_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
+        self.HL2DM_set_dir_button.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(231, 231, 231);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"background-color: rgb(202, 202, 202);\n"
+"border-style: inset;\n"
+"}")
+        self.HL2DM_set_dir_button.setObjectName("HL2DM_set_dir_button")
+        self.gridLayout.addWidget(self.HL2DM_set_dir_button, 2, 4, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 1, 1, 1, 1)
         self.DOD_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.DOD_path_label.setAutoFillBackground(False)
         self.DOD_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
@@ -108,18 +116,15 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);")
         self.DOD_path_label.setObjectName("DOD_path_label")
         self.gridLayout.addWidget(self.DOD_path_label, 3, 2, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem4, 1, 3, 1, 1)
         self.label_5 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.label_5.setStyleSheet("font: 22pt \"Roboto\";\n"
 "color: rgb(0, 0, 0);")
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 3, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem4, 1, 3, 1, 1)
-        self.label_6 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
-        self.label_6.setStyleSheet("font: 22pt \"Roboto\";\n"
-"color: rgb(0, 0, 0);")
-        self.label_6.setObjectName("label_6")
-        self.gridLayout.addWidget(self.label_6, 4, 0, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem5, 3, 3, 1, 1)
         self.DOD_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.DOD_set_dir_button.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -136,23 +141,12 @@ class Ui_MainWindow(object):
 "}")
         self.DOD_set_dir_button.setObjectName("DOD_set_dir_button")
         self.gridLayout.addWidget(self.DOD_set_dir_button, 3, 4, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem5, 4, 1, 1, 1)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout.addItem(spacerItem6, 0, 3, 1, 1)
-        self.L4D_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
-        self.L4D_path_label.setAutoFillBackground(False)
-        self.L4D_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
-"background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 0, 0);")
-        self.L4D_path_label.setObjectName("L4D_path_label")
-        self.gridLayout.addWidget(self.L4D_path_label, 4, 2, 1, 1)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem7, 3, 3, 1, 1)
-        spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem8, 3, 1, 1, 1)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem9, 4, 3, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem7, 3, 1, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 2, 3, 1, 1)
         self.HL2DM_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.HL2DM_path_label.setAutoFillBackground(False)
         self.HL2DM_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
@@ -160,8 +154,6 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);")
         self.HL2DM_path_label.setObjectName("HL2DM_path_label")
         self.gridLayout.addWidget(self.HL2DM_path_label, 2, 2, 1, 1)
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem10, 2, 3, 1, 1)
         self.HLDMS_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.HLDMS_set_dir_button.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -178,43 +170,18 @@ class Ui_MainWindow(object):
 "}")
         self.HLDMS_set_dir_button.setObjectName("HLDMS_set_dir_button")
         self.gridLayout.addWidget(self.HLDMS_set_dir_button, 1, 4, 1, 1)
+        self.label_7 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
+        self.label_7.setStyleSheet("font: 22pt \"Roboto\";\n"
+"color: rgb(0, 0, 0);")
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 4, 0, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem9, 4, 1, 1, 1)
         self.label_4 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         self.label_4.setStyleSheet("font: 22pt \"Roboto\";\n"
 "color: rgb(0, 0, 0);")
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
-        self.L4D_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
-        self.L4D_set_dir_button.setStyleSheet("QPushButton {\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(231, 231, 231);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background-color: rgb(202, 202, 202);\n"
-"border-style: inset;\n"
-"}")
-        self.L4D_set_dir_button.setObjectName("L4D_set_dir_button")
-        self.gridLayout.addWidget(self.L4D_set_dir_button, 4, 4, 1, 1)
-        self.label_7 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
-        self.label_7.setStyleSheet("font: 22pt \"Roboto\";\n"
-"color: rgb(0, 0, 0);")
-        self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 5, 0, 1, 1)
-        spacerItem11 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem11, 5, 1, 1, 1)
-        self.L4D2_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
-        self.L4D2_path_label.setAutoFillBackground(False)
-        self.L4D2_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
-"background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 0, 0);")
-        self.L4D2_path_label.setObjectName("L4D2_path_label")
-        self.gridLayout.addWidget(self.L4D2_path_label, 5, 2, 1, 1)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout.addItem(spacerItem12, 5, 3, 1, 1)
         self.L4D2_set_dir_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.L4D2_set_dir_button.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -230,11 +197,20 @@ class Ui_MainWindow(object):
 "border-style: inset;\n"
 "}")
         self.L4D2_set_dir_button.setObjectName("L4D2_set_dir_button")
-        self.gridLayout.addWidget(self.L4D2_set_dir_button, 5, 4, 1, 1)
+        self.gridLayout.addWidget(self.L4D2_set_dir_button, 4, 4, 1, 1)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem10, 4, 3, 1, 1)
+        self.L4D2_path_label = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
+        self.L4D2_path_label.setAutoFillBackground(False)
+        self.L4D2_path_label.setStyleSheet("font: 16pt \"Roboto\";\n"
+"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.L4D2_path_label.setObjectName("L4D2_path_label")
+        self.gridLayout.addWidget(self.L4D2_path_label, 4, 2, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_4.addWidget(self.scrollArea)
-        spacerItem13 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
-        self.verticalLayout_4.addItem(spacerItem13)
+        spacerItem11 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
+        self.verticalLayout_4.addItem(spacerItem11)
         self.download_button = QtWidgets.QPushButton(parent=self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -265,23 +241,20 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "SOURCE: CROSSROADS"))
         self.TF2_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
-        self.HLDMS_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.label_3.setText(_translate("MainWindow", "HLDM:S"))
+        self.HLDMS_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.label_2.setText(_translate("MainWindow", "TF2"))
-        self.HL2DM_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
         self.TF2_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
+        self.HL2DM_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
         self.DOD_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.label_5.setText(_translate("MainWindow", "DOD"))
-        self.label_6.setText(_translate("MainWindow", "L4D"))
         self.DOD_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
-        self.L4D_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.HL2DM_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.HLDMS_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
-        self.label_4.setText(_translate("MainWindow", "HL2:DM"))
-        self.L4D_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
         self.label_7.setText(_translate("MainWindow", "L4D2"))
-        self.L4D2_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
+        self.label_4.setText(_translate("MainWindow", "HL2:DM"))
         self.L4D2_set_dir_button.setText(_translate("MainWindow", "Locate Game Directory"))
+        self.L4D2_path_label.setText(_translate("MainWindow", "PATH NOT FOUND"))
         self.download_button.setText(_translate("MainWindow", "Download FASTDL Content"))
 
 
