@@ -95,183 +95,6 @@
         <property name="verticalSpacing">
          <number>10</number>
         </property>
-        <item row="0" column="2" alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="TF2_path_label">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>500</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 16pt &quot;Roboto&quot;;
-background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>PATH NOT FOUND</string>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="wordWrap">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="styleSheet">
-           <string notr="true">font: 22pt &quot;Roboto&quot;;
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>HLDM:S</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="HLDMS_path_label">
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 16pt &quot;Roboto&quot;;
-background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>PATH NOT FOUND</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="styleSheet">
-           <string notr="true">font: 22pt &quot;Roboto&quot;;
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>TF2</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="1">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="4">
-         <widget class="QPushButton" name="TF2_set_dir_button">
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
-}
-
-QPushButton:hover {
-	background-color: rgb(231, 231, 231);
-}
-
-QPushButton:pressed {
-background-color: rgb(202, 202, 202);
-border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Locate Game Directory</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
-         <widget class="QPushButton" name="HL2DM_set_dir_button">
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
-}
-
-QPushButton:hover {
-	background-color: rgb(231, 231, 231);
-}
-
-QPushButton:pressed {
-background-color: rgb(202, 202, 202);
-border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Locate Game Directory</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLabel" name="DOD_path_label">
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 16pt &quot;Roboto&quot;;
-background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>PATH NOT FOUND</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="3">
          <spacer name="horizontalSpacer_5">
           <property name="orientation">
@@ -309,25 +132,18 @@ color: rgb(0, 0, 0);</string>
           </property>
          </spacer>
         </item>
-        <item row="3" column="4">
-         <widget class="QPushButton" name="DOD_set_dir_button">
+        <item row="3" column="2">
+         <widget class="QLabel" name="DOD_path_label">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton {
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
-}
-
-QPushButton:hover {
-	background-color: rgb(231, 231, 231);
-}
-
-QPushButton:pressed {
-background-color: rgb(202, 202, 202);
-border-style: inset;
-}</string>
+           <string notr="true">font: 16pt &quot;Roboto&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
           </property>
           <property name="text">
-           <string>Locate Game Directory</string>
+           <string>PATH NOT FOUND</string>
           </property>
          </widget>
         </item>
@@ -373,6 +189,28 @@ border-style: inset;
           </property>
          </spacer>
         </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="DOD_set_dir_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+QPushButton:pressed {
+background-color: rgb(202, 202, 202);
+border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Locate Game Directory</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="2">
          <widget class="QLabel" name="HL2DM_path_label">
           <property name="autoFillBackground">
@@ -410,17 +248,6 @@ border-style: inset;
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="styleSheet">
-           <string notr="true">font: 22pt &quot;Roboto&quot;;
-color: rgb(0, 0, 0);</string>
-          </property>
-          <property name="text">
-           <string>L4D2</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="1">
          <spacer name="horizontalSpacer_12">
           <property name="orientation">
@@ -436,6 +263,17 @@ color: rgb(0, 0, 0);</string>
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="styleSheet">
+           <string notr="true">font: 22pt &quot;Roboto&quot;;
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>L4D2</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_4">
@@ -485,6 +323,322 @@ border-style: inset;
         </item>
         <item row="4" column="2">
          <widget class="QLabel" name="L4D2_path_label">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;Roboto&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>PATH NOT FOUND</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2" alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="TF2_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;Roboto&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>PATH NOT FOUND</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="HLDMS_path_label">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;Roboto&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>PATH NOT FOUND</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">font: 22pt &quot;Roboto&quot;;
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>TF2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">font: 22pt &quot;Roboto&quot;;
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>HLDM:S</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QPushButton" name="HL2DM_set_dir_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+QPushButton:pressed {
+background-color: rgb(202, 202, 202);
+border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Locate Game Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="TF2_set_dir_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+QPushButton:pressed {
+background-color: rgb(202, 202, 202);
+border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Locate Game Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="styleSheet">
+           <string notr="true">font: 22pt &quot;Roboto&quot;;
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>CS:S</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <spacer name="horizontalSpacer_14">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="4">
+         <widget class="QPushButton" name="CSS_set_dir_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+QPushButton:pressed {
+background-color: rgb(202, 202, 202);
+border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Locate Game Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <spacer name="horizontalSpacer_15">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="4">
+         <widget class="QPushButton" name="CSGO_set_dir_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+QPushButton:pressed {
+background-color: rgb(202, 202, 202);
+border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Locate Game Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="3">
+         <spacer name="horizontalSpacer_17">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="1">
+         <spacer name="horizontalSpacer_16">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="styleSheet">
+           <string notr="true">font: 22pt &quot;Roboto&quot;;
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>CS:GO</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <widget class="QLabel" name="CSGO_path_label">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 16pt &quot;Roboto&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>PATH NOT FOUND</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLabel" name="CSS_path_label">
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>

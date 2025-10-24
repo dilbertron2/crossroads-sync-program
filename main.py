@@ -1,11 +1,9 @@
 import sys
+from pathlib import Path
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from gui import Ui_MainWindow
 import logic
-
-
-# def on_dir_button_clicked(game):
-#     logic.get_game_directory(game)
+import atexit
 
 
 class MainWindow(QMainWindow):
@@ -13,6 +11,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.resize(1000, 600)
 
         logic.read_config(self)
 
@@ -22,7 +21,11 @@ class MainWindow(QMainWindow):
         self.ui.HL2DM_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "HL2:DM"))
         self.ui.DOD_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "DoD:S"))
         self.ui.L4D2_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "L4D2"))
+        self.ui.CSS_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "CS:S"))
+        self.ui.CSGO_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "CS:GO"))
+        self.ui.download_button.clicked.connect(logic.sync_repo)
 
+atexit.register(logic.write_config)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
