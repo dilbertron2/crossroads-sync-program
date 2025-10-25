@@ -1,7 +1,5 @@
 import sys
 from pathlib import Path
-from time import sleep
-
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtCore import QThread, pyqtSignal, QTimer
 from gui import Ui_MainWindow
@@ -22,7 +20,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.resize(1000, 600)
-
 
         logic.read_config(self)
 
@@ -65,6 +62,12 @@ class MainWindow(QMainWindow):
         self.ui.download_button.setDisabled(True)
         self.ui.download_button.setText("Syncing.. Check Command Window for Progress")
 
+        ui = self.ui
+        dir_buttons = [ui.TF2_set_dir_button, ui.HLDMS_set_dir_button, ui.HL2DM_set_dir_button, ui.DOD_set_dir_button,
+                       ui.L4D2_set_dir_button, ui.CSS_set_dir_button, ui.CSGO_set_dir_button]
+
+        for button in dir_buttons:
+            button.setDisabled(True)
         self.thread.start()
         self.thread.finished.connect(self.on_sync_finished)
 
@@ -72,9 +75,16 @@ class MainWindow(QMainWindow):
         self.ui.download_button.setEnabled(True)
         self.ui.download_button.setText("Sync Complete!")
         QTimer.singleShot(3000, self.reset_download_text)
-
     def reset_download_text(self):
         self.ui.download_button.setText("Download FastDL Content (No Updates)")
+
+        ui = self.ui
+        dir_buttons = [ui.TF2_set_dir_button, ui.HLDMS_set_dir_button, ui.HL2DM_set_dir_button, ui.DOD_set_dir_button,
+                       ui.L4D2_set_dir_button, ui.CSS_set_dir_button, ui.CSGO_set_dir_button]
+
+        for button in dir_buttons:
+            button.setEnabled(True)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

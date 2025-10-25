@@ -287,6 +287,11 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
+"QPushButton:hover {\n"
+"    \n"
+"    background-color: rgb(92, 208, 25);\n"
+"}\n"
+"\n"
 "QPushButton:pressed {\n"
 "background-color: rgb(86, 194, 23);\n"
 "}")
