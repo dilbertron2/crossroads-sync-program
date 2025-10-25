@@ -1,6 +1,7 @@
-import json
+import os
 import shutil
 from http.client import responses
+from queue import PriorityQueue
 from zipfile import ZipFile
 
 from PyQt6 import QtWidgets
@@ -13,6 +14,8 @@ import requests
 import sys
 
 from git.objects.submodule.base import CLONE
+
+# import main
 
 if TYPE_CHECKING:
     from main import MainWindow
@@ -31,18 +34,21 @@ last_checked_commit_sha_csgo = ""
 last_checked_commit_sha_general = ""
 local_folder = Path().absolute() / "FastDL Content"
 api_url = f"https://api.github.com/repos/"
-l4d2_dir = ""
-tf2_dir = ""
-hldms_dir = ""
-hl2dm_dir = ""
-dods_dir = ""
-css_dir = ""
-csgo_dir = ""
+l4d2_dir = r""
+tf2_dir = r""
+hldms_dir = r""
+hl2dm_dir = r""
+dods_dir = r""
+css_dir = r""
+csgo_dir = r""
 
 games_using_tf2_repo = {"TF2"}
 games_using_csgo_repo = {"CS:GO"}
 games_using_general_repo = {"L4D2", "DoD:S", "HL2:DM", "HLDM:S", "CS:S"}
 
+tf2_repo_diff = None
+csgo_repo_diff = None
+general_repo_diff = None
 
 files_to_copy_fastdl_tf2 = []
 files_to_copy_fastdl_general = []
@@ -150,13 +156,13 @@ def write_config():
                       # "GamesUsingRepoCSGO": ",".join(games_using_csgo_repo),
                       # "GamesUsingRepoGeneral": ",".join(games_using_general_repo)
                       }
-    config["USER.DIRECTORIES"] = {"l4d2Dir": l4d2_dir,
-                                  "tf2Dir": tf2_dir,
-                                  "hldmsDir": hldms_dir,
-                                  "hl2dmDir": hl2dm_dir,
-                                  "dodsDir": dods_dir,
-                                  "cssDir": css_dir,
-                                  "csgoDir": csgo_dir}
+    config["USER.DIRECTORIES"] = {"l4d2Dir": Path(l4d2_dir).as_posix() if l4d2_dir else "",
+                                  "tf2Dir": Path(tf2_dir).as_posix() if tf2_dir else "",
+                                  "hldmsDir": Path(hldms_dir).as_posix() if hldms_dir else "",
+                                  "hl2dmDir": Path(hl2dm_dir).as_posix() if hl2dm_dir else "",
+                                  "dodsDir": Path(dods_dir).as_posix() if dods_dir else "",
+                                  "cssDir": Path(css_dir).as_posix() if css_dir else "",
+                                  "csgoDir": Path(csgo_dir).as_posix() if csgo_dir else ""}
 
     with open("config.ini", "w") as configfile:
         config.write(configfile)
@@ -229,7 +235,62 @@ def get_repo_diff(repo, last_checked_sha, latest_sha):
     else:
         return None
 
+def check_for_update(repo):
+    global latest_commit_sha_csgo, latest_commit_sha_general, latest_commit_sha_tf2
+    global files_to_copy_fastdl_tf2, files_to_copy_fastdl_csgo, files_to_copy_fastdl_general
+
+    if repo == target_repo_tf2:
+        latest_commit_sha_tf2 = get_latest_SHA(target_repo_tf2)
+
+        if latest_commit_sha_tf2 and latest_commit_sha_tf2 != last_checked_commit_sha_tf2:
+            print("Getting TF2 Diff")
+            diff = get_repo_diff(target_repo_tf2, last_checked_commit_sha_tf2, latest_commit_sha_tf2)
+            if diff:
+                print("diffs found")
+                files = diff.get("files", "")
+                if files:
+                    print("diff files found")
+                    for changed_file in files:
+                        files_to_copy_fastdl_tf2.append(changed_file)
+        elif latest_commit_sha_tf2 == last_checked_commit_sha_tf2:
+            print("TF2 repo has had no changes since last sync.")
+        else:
+            print(f"CANT CHECK TF2 REPO DIFF\nLatest Commit: {latest_commit_sha_tf2}\n Last checked Commit: {last_checked_commit_sha_tf2}")
+
+    elif repo == target_repo_csgo:
+        latest_commit_sha_csgo = get_latest_SHA(target_repo_csgo)
+
+        if latest_commit_sha_csgo and latest_commit_sha_csgo != last_checked_commit_sha_csgo:
+            print("Getting CSGO Diff")
+            diff = get_repo_diff(target_repo_csgo, last_checked_commit_sha_csgo, latest_commit_sha_csgo)
+            if diff:
+                files = diff.get("files", "")
+                if files:
+                    for changed_file in files:
+                        files_to_copy_fastdl_csgo.append(changed_file)
+        elif latest_commit_sha_csgo == last_checked_commit_sha_csgo:
+            print("CSGO repo has had no changes since last sync.")
+        else:
+            print(f"CANT CHECK CSGO REPO DIFF\nLatest Commit: {latest_commit_sha_csgo}\n Last checked Commit: {last_checked_commit_sha_csgo}")
+
+    elif repo == target_repo_general:
+        latest_commit_sha_general = get_latest_SHA(target_repo_general)
+
+        if latest_commit_sha_general and latest_commit_sha_general != last_checked_commit_sha_general:
+            print("Getting General Diff")
+            diff = get_repo_diff(target_repo_general, last_checked_commit_sha_general, latest_commit_sha_general)
+            if diff:
+                files = diff.get("files", "")
+                if files:
+                    for changed_file in files:
+                        files_to_copy_fastdl_general.append(changed_file)
+        elif latest_commit_sha_general == last_checked_commit_sha_general:
+            print("General repo has had no changes since last sync.")
+        else:
+            print(f"CANT CHECK GENERAL REPO DIFF\nLatest Commit: {latest_commit_sha_general}\nLast checked Commit: {latest_commit_sha_general}")
+
 def clone_repo_zip(repo):
+    print("clone_repo_zip")
     url = f"{api_url}{repo}/zipball/main"
     print("sending request")
 
@@ -262,6 +323,7 @@ def clone_repo_zip(repo):
             return None
 
 def clone_repo(repo, game):
+    print("clone_repo")
     global latest_commit_sha_csgo, latest_commit_sha_general, latest_commit_sha_tf2
     global last_checked_commit_sha_csgo, last_checked_commit_sha_general, last_checked_commit_sha_tf2
 
@@ -331,55 +393,66 @@ def clone_repo(repo, game):
             print(f"status code: {response.status_code}")
             return None
 
+def copy_folder_to_download(dir_path: Path, fastdl: Path, download_path):
+    print("copy_folder_to_download")
+    if dir_path.exists() and fastdl.exists():
+        downloads_folder = dir_path / download_path
+        downloads_folder.mkdir(exist_ok=True)
+
+        for folder in os.listdir(fastdl):
+            source_path = fastdl / folder
+            dest_path = downloads_folder / folder
+            if source_path.is_dir():
+                print(f"copying folder {source_path} to {dest_path}")
+                shutil.copytree(source_path, dest_path, dirs_exist_ok=True)
+
 def sync_repo():
+    print("sync_repo")
     global latest_commit_sha_csgo, latest_commit_sha_general, latest_commit_sha_tf2
     global last_checked_commit_sha_csgo, last_checked_commit_sha_general, last_checked_commit_sha_tf2
     global files_to_copy_fastdl_tf2, files_to_copy_fastdl_csgo, files_to_copy_fastdl_general
     #tf2_fastdl, csgo_fastdl, general_fastdl = (local_folder / "fastdl"), (local_folder / "fastdl_csgo"), (local_folder / "fastdl_css")
     tf2_fastdl, csgo_fastdl, general_fastdl = (local_folder / "sync-testing"), (local_folder / "fastdl_csgo"), (local_folder / "fastdl_css")
-    if not local_folder.exists(): # User hasn't downloaded fastDL before.
+
+    if not local_folder.exists():
         local_folder.mkdir(exist_ok=True)
 
     # SYNC REPOS
 
-    files_to_copy_fastdl_tf2.clear()
-    files_to_copy_fastdl_csgo.clear()
-    files_to_copy_fastdl_general.clear()
-
-    if (local_folder / tf2_fastdl).exists(): # Sync TF2 repo
-        latest_commit_sha_tf2 = get_latest_SHA(target_repo_tf2)
-        if latest_commit_sha_tf2 and latest_commit_sha_tf2 != last_checked_commit_sha_tf2:
-            print("getting diff")
-            diff = get_repo_diff(target_repo_tf2, last_checked_commit_sha_tf2, latest_commit_sha_tf2)
-            if diff:
-                files = diff.get("files", "")
-                if files:
-                    for changed_file in files:
-                        files_to_copy_fastdl_tf2.append(changed_file)
-        elif latest_commit_sha_tf2 == last_checked_commit_sha_tf2:
-            print("TF2 repo has had no changes since last sync.")
-
-    if (local_folder / csgo_fastdl).exists(): # Sync CSGO repo
-        latest_commit_sha_csgo = get_latest_SHA(target_repo_csgo)
-        if latest_commit_sha_csgo and latest_commit_sha_csgo != last_checked_commit_sha_csgo:
-            diff = get_repo_diff(target_repo_csgo, last_checked_commit_sha_csgo, latest_commit_sha_csgo)
-            if diff:
-                files = diff.get("files", "")
-                if files:
-                    for changed_file in files:
-                        files_to_copy_fastdl_csgo.append(changed_file)
-        elif latest_commit_sha_csgo != last_checked_commit_sha_csgo:
-            print("CSGO repo has had no changes since last sync.")
-
-    if (local_folder / general_fastdl).exists(): # Sync general repo
-        latest_commit_sha_general = get_latest_SHA(target_repo_general)
-        if latest_commit_sha_general and latest_commit_sha_general != last_checked_commit_sha_general:
-            diff = get_repo_diff(target_repo_general, last_checked_commit_sha_general, latest_commit_sha_general)
-            if diff:
-                files = diff.get("files", "")
-                if files:
-                    for changed_file in files:
-                        files_to_copy_fastdl_general.append(changed_file)
+    # if (local_folder / tf2_fastdl).exists(): # Sync TF2 repo
+    #     latest_commit_sha_tf2 = get_latest_SHA(target_repo_tf2)
+    #     if latest_commit_sha_tf2 and latest_commit_sha_tf2 != last_checked_commit_sha_tf2:
+    #         print("getting diff")
+    #         diff = get_repo_diff(target_repo_tf2, last_checked_commit_sha_tf2, latest_commit_sha_tf2)
+    #         if diff:
+    #             files = diff.get("files", "")
+    #             if files:
+    #                 for changed_file in files:
+    #                     files_to_copy_fastdl_tf2.append(changed_file)
+    #     elif latest_commit_sha_tf2 == last_checked_commit_sha_tf2:
+    #         print("TF2 repo has had no changes since last sync.")
+    #
+    # if (local_folder / csgo_fastdl).exists(): # Sync CSGO repo
+    #     latest_commit_sha_csgo = get_latest_SHA(target_repo_csgo)
+    #     if latest_commit_sha_csgo and latest_commit_sha_csgo != last_checked_commit_sha_csgo:
+    #         diff = get_repo_diff(target_repo_csgo, last_checked_commit_sha_csgo, latest_commit_sha_csgo)
+    #         if diff:
+    #             files = diff.get("files", "")
+    #             if files:
+    #                 for changed_file in files:
+    #                     files_to_copy_fastdl_csgo.append(changed_file)
+    #     elif latest_commit_sha_csgo != last_checked_commit_sha_csgo:
+    #         print("CSGO repo has had no changes since last sync.")
+    #
+    # if (local_folder / general_fastdl).exists(): # Sync general repo
+    #     latest_commit_sha_general = get_latest_SHA(target_repo_general)
+    #     if latest_commit_sha_general and latest_commit_sha_general != last_checked_commit_sha_general:
+    #         diff = get_repo_diff(target_repo_general, last_checked_commit_sha_general, latest_commit_sha_general)
+    #         if diff:
+    #             files = diff.get("files", "")
+    #             if files:
+    #                 for changed_file in files:
+    #                     files_to_copy_fastdl_general.append(changed_file)
 
     # Clone repos if not found and required for games
     if not (local_folder / tf2_fastdl).exists() and tf2_dir:
@@ -392,6 +465,7 @@ def sync_repo():
     # Copy files if diff exists
 
     def extract_diff_files(zip_path, file_list):
+        print("extract_diff_files")
         try:
             with ZipFile(zip_path, "r") as repozip:
                 # Zip file contains one folder that then contains the actual zip, this sucks
@@ -428,6 +502,7 @@ def sync_repo():
                         if target_file_path.exists(): # If the file is not found in the zip, delete it on local
                             target_file_path.unlink()
                             print(f"SUCCESS: Deleted {target_file_path}")
+
                             parent_folder = target_file_path.parent
                             if parent_folder.exists(): # Delete parent folder if it is empty
                                 if not any(parent_folder.iterdir()):
@@ -441,12 +516,11 @@ def sync_repo():
         except Exception as e:
             print(f"Error opening zip {zip_path}: {e}")
         finally:
-            # --- FIX 4: Clean up the zip file ---
             if zip_path.exists():
                 zip_path.unlink()
                 print(f"Cleaned up {zip_path}")
 
-
+    # Extract files from zip if diff found
     if files_to_copy_fastdl_general:
         clone_repo_zip(target_repo_general)
         zip_filename = f"{target_repo_general.replace('/', '_')}.zip"
@@ -464,6 +538,7 @@ def sync_repo():
             last_checked_commit_sha_csgo = latest_commit_sha_csgo
 
     if files_to_copy_fastdl_tf2:
+        print("files_to_copy_fastdl_tf2")
         clone_repo_zip(target_repo_tf2)
         zip_filename = f"{target_repo_tf2.replace('/', '_')}.zip"
         zip_filepath = local_folder / zip_filename
@@ -473,3 +548,26 @@ def sync_repo():
 
     print("Sync Complete, copying files to required directories..")
 
+    if Path(tf2_dir).exists():
+        copy_folder_to_download(Path(tf2_dir), tf2_fastdl, "tf/download")
+    if Path(csgo_dir).exists():
+        copy_folder_to_download(Path(csgo_dir), csgo_fastdl, "csgo")
+    if Path(l4d2_dir).exists():
+        copy_folder_to_download(Path(l4d2_dir), general_fastdl, "left4dead2")
+    if Path(css_dir).exists():
+        copy_folder_to_download(Path(css_dir), general_fastdl, "cstrike/download")
+    if Path(hldms_dir).exists():
+        copy_folder_to_download(Path(hldms_dir), general_fastdl, "hl1mp/download")
+    if Path(hl2dm_dir).exists():
+        copy_folder_to_download(Path(hl2dm_dir), general_fastdl, "hl2mp/download")
+    if Path(dods_dir).exists():
+        copy_folder_to_download(Path(dods_dir), general_fastdl, "dod/download")
+
+    files_to_copy_fastdl_tf2.clear()
+    files_to_copy_fastdl_csgo.clear()
+    files_to_copy_fastdl_general.clear()
+
+check_for_update(target_repo_csgo)
+check_for_update(target_repo_general)
+check_for_update(target_repo_tf2)
+sync_repo()
