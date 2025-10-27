@@ -1,10 +1,22 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QThread, QTimer
+from pathlib import Path
+
+from PyQt5.QtMultimedia import QSoundEffect
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt5.QtCore import QThread, QTimer, QUrl
 from gui import Ui_MainWindow
 import resources
 import logic
 import atexit
+
+
+def resource_path(relative_path): # Check whether program has been compiled with pyinstaller or is simply running from a straight .py file
+    try:
+        base_path = Path(sys._MEIPASS)
+    except AttributeError:
+        base_path = Path(".").resolve()
+    return base_path / relative_path
+
 
 class LogicThread(QThread):
     def __init__(self):
@@ -19,7 +31,18 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.resize(1000, 600)
+
+        self.click_sound1 = QSoundEffect()
+        self.click_sound1.setSource(QUrl.fromLocalFile(str(resource_path("button3.wav"))))
+        self.click_sound1.setVolume(0.2)
+
+        self.click_sound2 = QSoundEffect()
+        self.click_sound2.setSource(QUrl.fromLocalFile(str(resource_path("button1.wav"))))
+        self.click_sound2.setVolume(0.3)
+
+        self.connect_buttons(self.ui.centralwidget)
+        self.ui.download_button.disconnect()
+        self.ui.download_button.clicked.connect(self.click_sound2.play)
 
         logic.read_config(self)
 
@@ -84,6 +107,10 @@ class MainWindow(QMainWindow):
 
         for button in dir_buttons:
             button.setEnabled(True)
+
+    def connect_buttons(self, widget):
+        for child in widget.findChildren(QPushButton):
+            child.clicked.connect(self.click_sound1.play)
 
 
 if __name__ == "__main__":
