@@ -1,8 +1,8 @@
 import sys
-from pathlib import Path
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtCore import QThread, pyqtSignal, QTimer
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import QThread, QTimer
 from gui import Ui_MainWindow
+import resources
 import logic
 import atexit
 
@@ -33,9 +33,9 @@ class MainWindow(QMainWindow):
         self.ui.CSGO_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "CS:GO"))
         self.ui.download_button.clicked.connect(self.on_download_press)
 
-        logic.check_for_update(logic.target_repo_tf2)
-        logic.check_for_update(logic.target_repo_csgo)
-        logic.check_for_update(logic.target_repo_general)
+        # logic.check_for_update(logic.target_repo_tf2)
+        # logic.check_for_update(logic.target_repo_csgo)
+        # logic.check_for_update(logic.target_repo_general)
         updated_repos = []
         if logic.files_to_copy_fastdl_tf2:
             updated_repos.append("TF2")
@@ -89,6 +89,14 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
+    app.setStyleSheet("""
+        QToolTip { 
+            background-color: black; 
+            color: white; 
+            border: 1px solid white;
+            font: 12pt "VCR OSD Mono";
+        }
+    """)
     window.show()
     atexit.register(logic.write_config)
     sys.exit(app.exec())

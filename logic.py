@@ -1,24 +1,15 @@
 import os
 import shutil
-from http.client import responses
-from queue import PriorityQueue
 from zipfile import ZipFile
-
-from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog
 from pathlib import Path
 from typing import TYPE_CHECKING
-from PyQt6.QtGui import QFont, QFontMetrics
 import configparser
 import requests
-import sys
-
-from git.objects.submodule.base import CLONE
-
-# import main
-
 if TYPE_CHECKING:
     from main import MainWindow
+
+tooltip_stylesheet = 'color: rgb(255, 255, 255); background-color: black; font: 12pt "VCR OSD Mono";'
 
 
 config = configparser.ConfigParser()
@@ -114,36 +105,43 @@ def read_config(self):
             if (Path(config_l4d2_dir) / "left4dead2.exe").exists():
                 l4d2_dir = Path(config_l4d2_dir)
                 self.ui.L4D2_path_label.setText(str(l4d2_dir))
+                self.ui.L4D2_path_label.setToolTip(str(l4d2_dir))
 
         if config_tf2_dir:
             if (Path(config_tf2_dir) / "tf.exe").exists():
                 tf2_dir = Path(config_tf2_dir)
                 self.ui.TF2_path_label.setText(str(tf2_dir))
+                self.ui.TF2_path_label.setToolTip(str(tf2_dir))
 
         if config_hldms_dir:
             if (Path(config_hldms_dir) / "hl1mp.exe").exists():
                 hldms_dir = Path(config_hldms_dir)
                 self.ui.HLDMS_path_label.setText(str(hldms_dir))
+                self.ui.HLDMS_path_label.setToolTip(str(hldms_dir))
 
         if config_hl2dm_dir:
             if (Path(config_hl2dm_dir) / "hl2.exe").exists():
                 hl2dm_dir = Path(config_hl2dm_dir)
                 self.ui.HL2DM_path_label.setText(str(hl2dm_dir))
+                self.ui.HL2DM_path_label.setToolTip(str(hl2dm_dir))
 
         if config_dods_dir:
             if (Path(config_dods_dir) / "dod.exe").exists():
                 dods_dir = Path(config_dods_dir)
                 self.ui.DOD_path_label.setText(str(dods_dir))
+                self.ui.DOD_path_label.setToolTip(str(dods_dir))
 
         if config_css_dir:
             if (Path(config_css_dir) / "hl2.exe").exists():
                 css_dir = Path(config_css_dir)
                 self.ui.CSS_path_label.setText(str(css_dir))
+                self.ui.CSS_path_label.setToolTip(str(css_dir))
 
         if config_csgo_dir:
             if (Path(config_csgo_dir) / "csgo.exe").exists():
                 csgo_dir = Path(config_csgo_dir)
                 self.ui.CSGO_path_label.setText(str(csgo_dir))
+                self.ui.CSGO_path_label.setToolTip(str(csgo_dir))
 
 def write_config():
     config["REPO"] = {"TargetRepoTF2": target_repo_tf2,
@@ -178,36 +176,43 @@ def get_game_directory(self, game):
                 if (folder / "tf.exe").exists():
                     tf2_dir = folder
                     self.ui.TF2_path_label.setText(str(folder))
+                    self.ui.TF2_path_label.setToolTip(str(folder))
 
             elif game == "HLDM:S":
                 if (folder / "hl1mp.exe").exists():
                     hldms_dir = folder
                     self.ui.HLDMS_path_label.setText(str(folder))
+                    self.ui.HLDMS_path_label.setToolTip(str(folder))
 
             elif game == "HL2:DM":
                 if (folder / "hl2.exe").exists():
                     hl2dm_dir = folder
                     self.ui.HL2DM_path_label.setText(str(folder))
+                    self.ui.HL2DM_path_label.setToolTip(str(folder))
 
             elif game == "DoD:S":
                 if (folder / "dod.exe").exists():
                     dods_dir = folder
                     self.ui.DOD_path_label.setText(str(folder))
+                    self.ui.DOD_path_label.setToolTip(str(folder))
 
             elif game == "L4D2":
                 if (folder / "left4dead2.exe").exists():
                     l4d2_dir = folder
                     self.ui.L4D2_path_label.setText(str(folder))
+                    self.ui.L4D2_path_label.setToolTip(str(folder))
 
             elif game == "CS:GO":
                 if (folder / "csgo.exe").exists():
                     csgo_dir = folder
                     self.ui.CSGO_path_label.setText(str(folder))
+                    self.ui.CSGO_path_label.setToolTip(str(folder))
 
             elif game == "CS:S":
                 if (folder / "hl2.exe").exists():
                     css_dir = folder
                     self.ui.CSS_path_label.setText(str(folder))
+                    self.ui.CSS_path_label.setToolTip(str(folder))
 
 def get_latest_SHA(repo):
     url = f"{api_url}{repo}/commits"
