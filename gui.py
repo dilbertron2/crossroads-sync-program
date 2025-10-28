@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setEnabled(True)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 928, 556))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 928, 549))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -377,18 +377,29 @@ class Ui_MainWindow(object):
         self.download_button.setSizePolicy(sizePolicy)
         self.download_button.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.download_button.setStyleSheet("QPushButton {\n"
-"font: 16pt \"Roboto\";\n"
-"background-color: rgb(101, 234, 29);\n"
-"color: rgb(0, 0, 0);\n"
+"  display: inline-block;\n"
+"  font-family: \'VCR OSD Mono\', monospace;\n"
+"  font-size: 20px;\n"
+"  font-weight: bold;\n"
+"  padding: 8px;\n"
+"  text-transform: uppercase;\n"
+"  text-decoration: none;\n"
+"  color: #000;\n"
+"  background-color: rgb(101, 234, 29);\n"
+"  border: 2px solid #ffffff;\n"
+"  cursor: pointer;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    \n"
-"    background-color: rgb(92, 208, 25);\n"
+"background-color: rgb(93, 209, 25);\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"background-color: rgb(86, 194, 23);\n"
+"    \n"
+"    background-color: rgb(81, 177, 20);\n"
+"    border-style: inset;\n"
+"    margin-left: 1px;\n"
+"    margin-top: 1px;\n"
 "}")
         self.download_button.setObjectName("download_button")
         self.verticalLayout_4.addWidget(self.download_button)
