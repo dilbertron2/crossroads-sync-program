@@ -1,3 +1,5 @@
+Remember, you can hover over filepaths (incase the path is too long for some reason) and see the full path! You can also hover over game icons to see the name of the game if you are confused.
+
 The config.ini file contains values for the github repo being targetted for each fastDL server. You should never have to change them but IF you do, you can.
 
 PLEASE REFRAIN FROM CLOSING THE PROGRAM VIA THE COMMAND WINDOW INSTEAD OF THE GUI, IT SHOULD WORK FINE BUT THE PROGRAM IS FORCIBLY TERMINATED ONCE THE COMMAND WINDOW IS CLOSED INSTEAD OF EXITING NORMALLY. BE AWARE.

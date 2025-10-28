@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="Logo">
+    <file>program_icon.png</file>
+    <file>CSGO_icon.png</file>
+    <file>CSS_icon.png</file>
+    <file>L4D2_icon.png</file>
+    <file>DODS_icon.png</file>
+    <file>HL2DM_icon.png</file>
+    <file>HLDMS_icon.png</file>
+    <file>TF2_Icon.png</file>
+  </qresource>
+  <qresource prefix="Font">
+    <file>VCR_OSD_MONO_1.001[1].ttf</file>
+  </qresource>
+  <qresource prefix="Sound">
+    <file>button1.wav</file>
+    <file>button3.wav</file>
+  </qresource>
+</RCC>

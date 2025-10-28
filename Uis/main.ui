@@ -6,19 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
+    <width>1100</width>
     <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>950</width>
-    <height>700</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>950</width>
+    <width>1100</width>
     <height>700</height>
    </size>
   </property>
@@ -51,8 +45,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: white;
-font: 25pt &quot;VCR OSD Mono&quot;;</string>
+       <string notr="true">color: white;</string>
       </property>
       <property name="text">
        <string>Source: Crossroads FastDL Manager</string>
@@ -84,7 +77,7 @@ font: 25pt &quot;VCR OSD Mono&quot;;</string>
        <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -100,8 +93,8 @@ font: 25pt &quot;VCR OSD Mono&quot;;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>928</width>
-         <height>549</height>
+         <width>1078</width>
+         <height>570</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -148,27 +141,20 @@ font: 25pt &quot;VCR OSD Mono&quot;;</string>
         <item row="0" column="2">
          <widget class="QLabel" name="TF2_path_label">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>650</width>
-            <height>450</height>
-           </size>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+           <string notr="true">color: #fff;
+background-color: #000;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -316,16 +302,21 @@ QPushButton:pressed {
         </item>
         <item row="1" column="2">
          <widget class="QLabel" name="HLDMS_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -563,16 +554,21 @@ QPushButton:pressed {
         </item>
         <item row="2" column="2">
          <widget class="QLabel" name="HL2DM_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -581,16 +577,21 @@ font: 12pt &quot;VCR OSD Mono&quot;;</string>
         </item>
         <item row="3" column="2">
          <widget class="QLabel" name="DOD_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -615,16 +616,21 @@ font: 12pt &quot;VCR OSD Mono&quot;;</string>
         </item>
         <item row="4" column="2">
          <widget class="QLabel" name="L4D2_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -725,16 +731,21 @@ QPushButton:pressed {
         </item>
         <item row="5" column="2">
          <widget class="QLabel" name="CSS_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -772,16 +783,21 @@ font: 12pt &quot;VCR OSD Mono&quot;;</string>
         </item>
         <item row="6" column="2">
          <widget class="QLabel" name="CSGO_path_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: black;
-font: 12pt &quot;VCR OSD Mono&quot;;</string>
+background-color: black;</string>
           </property>
           <property name="text">
-           <string>PATH NOT FOUND</string>
+           <string>CHOOSE &quot;STEAMAPPS/COMMON&quot; GAME FOLDER</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

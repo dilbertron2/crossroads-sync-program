@@ -3,6 +3,7 @@ from PyQt5 import QtGui
 from PyQt5.QtMultimedia import QSoundEffect
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtCore import QThread, QTimer, QUrl
+from PyQt5.QtGui import QFont, QFontDatabase
 from gui import Ui_MainWindow
 import resources
 import logic
@@ -22,6 +23,33 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        font_id = QFontDatabase.addApplicationFont(":/Font/VCR_OSD_MONO_1.001[1].ttf")
+        font_families = QFontDatabase.applicationFontFamilies(font_id)
+
+        if font_families:
+            font_family = font_families[0]
+            custom_font1 = QtGui.QFont(font_family, 12)
+            custom_font2 = QtGui.QFont(font_family, 25)
+
+            for lbl in [
+                self.ui.TF2_path_label, self.ui.HLDMS_path_label,
+                self.ui.HL2DM_path_label, self.ui.DOD_path_label,
+                self.ui.L4D2_path_label, self.ui.CSS_path_label,
+                self.ui.CSGO_path_label
+            ]:
+                lbl.setFont(custom_font1)
+
+            self.ui.label.setFont(custom_font2)
+
+            app.setStyleSheet("""
+                QToolTip { 
+                    background-color: black; 
+                    color: white; 
+                    border: 1px solid white;
+                    font: 12pt "VCR OSD Mono";
+                }
+            """)
 
         self.click_sound1 = QSoundEffect()
         self.click_sound1.setSource(QUrl.fromLocalFile(":/Sound/button3.wav"))
@@ -109,14 +137,6 @@ if __name__ == "__main__":
     window = MainWindow()
     window.setWindowTitle("Source: Crossroads FastDL Manager")
     window.setWindowIcon(QtGui.QIcon(":/Logo/program_icon.png"))
-    app.setStyleSheet("""
-        QToolTip { 
-            background-color: black; 
-            color: white; 
-            border: 1px solid white;
-            font: 12pt "VCR OSD Mono";
-        }
-    """)
     window.show()
     atexit.register(logic.write_config)
     sys.exit(app.exec())
