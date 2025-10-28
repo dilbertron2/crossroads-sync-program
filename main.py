@@ -1,6 +1,4 @@
 import sys
-from pathlib import Path
-
 from PyQt5 import QtGui
 from PyQt5.QtMultimedia import QSoundEffect
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
@@ -9,14 +7,6 @@ from gui import Ui_MainWindow
 import resources
 import logic
 import atexit
-
-
-def resource_path(relative_path): # Check whether program has been compiled with pyinstaller or is simply running from a straight .py file
-    try:
-        base_path = Path(sys._MEIPASS)
-    except AttributeError:
-        base_path = Path(".").resolve()
-    return base_path / relative_path
 
 
 class LogicThread(QThread):
@@ -34,11 +24,11 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self.click_sound1 = QSoundEffect()
-        self.click_sound1.setSource(QUrl.fromLocalFile(str(resource_path("button3.wav"))))
+        self.click_sound1.setSource(QUrl.fromLocalFile(":/Sound/button3.wav"))
         self.click_sound1.setVolume(0.2)
 
         self.click_sound2 = QSoundEffect()
-        self.click_sound2.setSource(QUrl.fromLocalFile(str(resource_path("button1.wav"))))
+        self.click_sound2.setSource(QUrl.fromLocalFile(":/Sound/button1.wav"))
         self.click_sound2.setVolume(0.3)
 
         self.connect_buttons(self.ui.centralwidget)
@@ -57,9 +47,9 @@ class MainWindow(QMainWindow):
         self.ui.CSGO_set_dir_button.clicked.connect(lambda: logic.get_game_directory(self, "CS:GO"))
         self.ui.download_button.clicked.connect(self.on_download_press)
 
-        # logic.check_for_update(logic.target_repo_tf2)
-        # logic.check_for_update(logic.target_repo_csgo)
-        # logic.check_for_update(logic.target_repo_general)
+        logic.check_for_update(logic.target_repo_tf2)
+        logic.check_for_update(logic.target_repo_csgo)
+        logic.check_for_update(logic.target_repo_general)
         updated_repos = []
         if logic.files_to_copy_fastdl_tf2:
             updated_repos.append("TF2")
