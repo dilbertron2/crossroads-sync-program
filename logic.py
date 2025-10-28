@@ -3,11 +3,8 @@ import shutil
 from zipfile import ZipFile
 from PyQt5.QtWidgets import QFileDialog
 from pathlib import Path
-from typing import TYPE_CHECKING
 import configparser
 import requests
-if TYPE_CHECKING:
-    from main import MainWindow
 
 
 config = configparser.ConfigParser()
