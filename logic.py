@@ -9,21 +9,25 @@ import requests
 if TYPE_CHECKING:
     from main import MainWindow
 
-tooltip_stylesheet = 'color: rgb(255, 255, 255); background-color: black; font: 12pt "VCR OSD Mono";'
-
 
 config = configparser.ConfigParser()
 config.optionxform = str
-target_repo_tf2 = "dilbertron2/sourceroads-fastdl-test"
-target_repo_csgo = "dilbertron2/sourceroads-fastdl-csgo-test"
-target_repo_general = "dilbertron2/sourceroads-fastdl-css-test"
+local_folder = Path().absolute() / "FastDL Content"
+
+# URL FOR EACH GITHUB REPOSITORY (Following format of [OWNER]/[REPO_NAME])
+target_repo_tf2 = "siobhan-saoirse/sourceroads-fastdl"
+target_repo_csgo = "siobhan-saoirse/sourceroads-fastdl-csgo"
+target_repo_general = "siobhan-saoirse/sourceroads-fastdl-css"
+
+# NAME OF TOP-LEVEL FOLDER FOR EACH REPO, CHANGE ACCORDINGLY TO YOUR NEEDS (The sole top-level folder of sourceroads-fastdl is just "fastdl", so we input here, for example)
+tf2_fastdl, csgo_fastdl, general_fastdl = (local_folder / "fastdl"), (local_folder / "fastdl_csgo"), (local_folder / "fastdl_css")
+
 latest_commit_sha_tf2 = ""
 latest_commit_sha_csgo = ""
 latest_commit_sha_general = ""
 last_checked_commit_sha_tf2 = ""
 last_checked_commit_sha_csgo = ""
 last_checked_commit_sha_general = ""
-local_folder = Path().absolute() / "FastDL Content"
 api_url = f"https://api.github.com/repos/"
 l4d2_dir = r""
 tf2_dir = r""
@@ -177,42 +181,49 @@ def get_game_directory(self, game):
                     tf2_dir = folder
                     self.ui.TF2_path_label.setText(str(folder))
                     self.ui.TF2_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "HLDM:S":
                 if (folder / "hl1mp.exe").exists():
                     hldms_dir = folder
                     self.ui.HLDMS_path_label.setText(str(folder))
                     self.ui.HLDMS_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "HL2:DM":
                 if (folder / "hl2.exe").exists():
                     hl2dm_dir = folder
                     self.ui.HL2DM_path_label.setText(str(folder))
                     self.ui.HL2DM_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "DoD:S":
                 if (folder / "dod.exe").exists():
                     dods_dir = folder
                     self.ui.DOD_path_label.setText(str(folder))
                     self.ui.DOD_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "L4D2":
                 if (folder / "left4dead2.exe").exists():
                     l4d2_dir = folder
                     self.ui.L4D2_path_label.setText(str(folder))
                     self.ui.L4D2_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "CS:GO":
                 if (folder / "csgo.exe").exists():
                     csgo_dir = folder
                     self.ui.CSGO_path_label.setText(str(folder))
                     self.ui.CSGO_path_label.setToolTip(str(folder))
+                    write_config()
 
             elif game == "CS:S":
                 if (folder / "hl2.exe").exists():
                     css_dir = folder
                     self.ui.CSS_path_label.setText(str(folder))
                     self.ui.CSS_path_label.setToolTip(str(folder))
+                    write_config()
 
 def get_latest_SHA(repo):
     url = f"{api_url}{repo}/commits"
@@ -419,8 +430,6 @@ def sync_repo():
     global latest_commit_sha_csgo, latest_commit_sha_general, latest_commit_sha_tf2
     global last_checked_commit_sha_csgo, last_checked_commit_sha_general, last_checked_commit_sha_tf2
     global files_to_copy_fastdl_tf2, files_to_copy_fastdl_csgo, files_to_copy_fastdl_general
-    tf2_fastdl, csgo_fastdl, general_fastdl = (local_folder / "fastdl"), (local_folder / "fastdl_csgo"), (local_folder / "fastdl_css")
-    #tf2_fastdl, csgo_fastdl, general_fastdl = (local_folder / "sync-testing"), (local_folder / "fastdl_csgo"), (local_folder / "fastdl_css")
 
     if not local_folder.exists():
         local_folder.mkdir(exist_ok=True)
