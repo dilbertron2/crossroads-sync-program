@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+from PyQt5 import QtGui
 from PyQt5.QtMultimedia import QSoundEffect
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtCore import QThread, QTimer, QUrl
@@ -116,6 +117,8 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
+    window.setWindowTitle("Source: Crossroads FastDL Manager")
+    window.setWindowIcon(QtGui.QIcon(":/Logo/program_icon.png"))
     app.setStyleSheet("""
         QToolTip { 
             background-color: black; 

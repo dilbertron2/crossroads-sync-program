@@ -101,7 +101,7 @@ font: 25pt &quot;VCR OSD Mono&quot;;</string>
          <x>0</x>
          <y>0</y>
          <width>928</width>
-         <height>556</height>
+         <height>549</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -832,18 +832,29 @@ font: 12pt &quot;VCR OSD Mono&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-font: 16pt &quot;Roboto&quot;;
-background-color: rgb(101, 234, 29);
-color: rgb(0, 0, 0);
+  display: inline-block;
+  font-family: 'VCR OSD Mono', monospace;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background-color: rgb(101, 234, 29);
+  border: 2px solid #ffffff;
+  cursor: pointer;
 }
 
 QPushButton:hover {
-	
-	background-color: rgb(92, 208, 25);
+background-color: rgb(93, 209, 25);
 }
 
 QPushButton:pressed {
-background-color: rgb(86, 194, 23);
+    
+	background-color: rgb(81, 177, 20);
+    border-style: inset;
+    margin-left: 1px;
+    margin-top: 1px;
 }</string>
       </property>
       <property name="text">
