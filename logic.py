@@ -121,7 +121,7 @@ def read_config(self):
                 self.ui.HLDMS_path_label.setToolTip(str(hldms_dir))
 
         if config_hl2dm_dir:
-            if (Path(config_hl2dm_dir) / "hl2.exe").exists():
+            if (Path(config_hl2dm_dir) / "hl2.exe").exists() or (Path(config_hl2dm_dir) / "hl2mp.exe").exists():
                 hl2dm_dir = Path(config_hl2dm_dir)
                 self.ui.HL2DM_path_label.setText(str(hl2dm_dir))
                 self.ui.HL2DM_path_label.setToolTip(str(hl2dm_dir))
@@ -133,7 +133,7 @@ def read_config(self):
                 self.ui.DOD_path_label.setToolTip(str(dods_dir))
 
         if config_css_dir:
-            if (Path(config_css_dir) / "hl2.exe").exists():
+            if (Path(config_css_dir) / "hl2.exe").exists() or (Path(config_css_dir) / "cstrike.exe").exists():
                 css_dir = Path(config_css_dir)
                 self.ui.CSS_path_label.setText(str(css_dir))
                 self.ui.CSS_path_label.setToolTip(str(css_dir))
@@ -188,7 +188,7 @@ def get_game_directory(self, game):
                     write_config()
 
             elif game == "HL2:DM":
-                if (folder / "hl2.exe").exists():
+                if (folder / "hl2.exe").exists() or (folder / "hl2mp.exe").exists():
                     hl2dm_dir = folder
                     self.ui.HL2DM_path_label.setText(str(folder))
                     self.ui.HL2DM_path_label.setToolTip(str(folder))
@@ -216,7 +216,7 @@ def get_game_directory(self, game):
                     write_config()
 
             elif game == "CS:S":
-                if (folder / "hl2.exe").exists():
+                if (folder / "hl2.exe").exists() or (folder / "cstrike.exe").exists():
                     css_dir = folder
                     self.ui.CSS_path_label.setText(str(folder))
                     self.ui.CSS_path_label.setToolTip(str(folder))
